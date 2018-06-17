@@ -31,7 +31,7 @@ class SongGenerator(PredictText):
         return self.songs_list
 
     def print_songs(self):
-        print('Total songs:', len(self.num_of_songs))
+        print('Total songs:', self.num_of_songs)
         all_songs = ''
         for song in range(len(self.songs_list)):
             all_songs += str('song number:' + str(song + 1) + '\n')
