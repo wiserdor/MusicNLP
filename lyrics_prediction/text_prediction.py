@@ -53,7 +53,6 @@ class PredictText:
                             if (self.rnnTool.lang.ind2word[j[o].data.numpy()[0]] == '.'):
                                 output_tag_id = self.seq_output[-1]
 
-                            print(self.rnnTool.lang.ind2word)
                             print("Word:", self.rnnTool.lang.ind2word[j[o].data.numpy()[0]])
                             print("Prediction:", output_tag_id)
 
