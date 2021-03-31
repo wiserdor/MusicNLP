@@ -1,5 +1,5 @@
 files in this folder:
-    ./model/glove.6b.300d.txt
+    [Optional: for training model] ./model/glove.6b.300d.txt
     ./model/model.checkpoint.7000
     ./model/lang.checkpoint.7000
 

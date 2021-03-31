@@ -51,25 +51,25 @@ class PredictText:
                         output_tag_id = 1
                         try:
                             output, hidden = self.rnnTool.model(j[o], hidden)
-                            output_tag_id = np.argmax(self.rnnTool.softmax(output.data.numpy()[0]))
-                            if (self.rnnTool.lang.ind2word[j[o].data.numpy()[0]] == '.'):
+                            output_tag_id = np.argmax(self.rnnTool.softmax(output.data.item()))
+                            if (self.rnnTool.lang.ind2word[j[o].data.item()] == '.'):
                                 output_tag_id = self.seq_output[-1]
 
-                            print("Word:", self.rnnTool.lang.ind2word[j[o].data.numpy()[0]])
+                            print("Word:", self.rnnTool.lang.ind2word[j[o].data.item()])
                             print("Prediction:", output_tag_id)
 
-                        except:
+                        except Exception as e:
                             output_tag_id = self.seq_output[-1]
-                            print("Word:", self.rnnTool.lang.ind2word[j[o].data.numpy()[0]])
+                            print("Word:", self.rnnTool.lang.ind2word[j[o].data.item()])
                             print("Prediction:", output_tag_id)
 
                         if (output_tag_id == 1):
-                            self.seq_input += " \033[1m" + self.rnnTool.lang.ind2word[j[o].data.numpy()[0]] + '\033[0m'
+                            self.seq_input += " \033[1m" + self.rnnTool.lang.ind2word[j[o].data.item()] + '\033[0m'
                         else:
-                            self.seq_input += " " + self.rnnTool.lang.ind2word[j[o].data.numpy()[0]]
+                            self.seq_input += " " + self.rnnTool.lang.ind2word[j[o].data.item()]
 
                         self.seq_output.append(output_tag_id)
-                        self.naked_text.append(self.rnnTool.lang.ind2word[j[o].data.numpy()[0]])
+                        self.naked_text.append(self.rnnTool.lang.ind2word[j[o].data.item()])
             del (self.seq_output[0])
             del (self.seq_target[0])
             self.smooth_ones()

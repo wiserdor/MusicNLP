@@ -8,8 +8,8 @@ nltk.download('comparative_sentences')
 nltk.download('sentence_polarity')
 
 
-max_search_length = 500
-min_search_length = 100
+max_search_length = 50
+min_search_length = 20
 
 
 class CorpusBlender:
@@ -18,7 +18,7 @@ class CorpusBlender:
         self.corpuses_list = [brown, comparative_sentences, sentence_polarity]
 
     def create_song(self):
-
+        print('Creating songs')
         sentences_num = random.randrange(min_search_length, max_search_length)
         corpus_sentences_num = random.randrange(0, sentences_num)
         rand_sentences = []

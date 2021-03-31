@@ -41,5 +41,6 @@ class SongGenerator(PredictText):
         print(all_songs)
 
     def predict(self, raw_text=None):
+        print('Predicting')
         super().predict(raw_text)
         self.generate_songs_list()
