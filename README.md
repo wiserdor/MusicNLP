@@ -1,3 +1,6 @@
+[![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
+
+
 Music NLP is project i made while i was in Computer science studies, based on an article i wrote: 
 Song Lyrics Recognition in Text – An NLP study project training a model using LSTM neural network. Presented at: IAAI2018@COMAS – 24.5.2018 [read it here]( https://drive.google.com/file/d/1_AGl7DFCTYgxtXV3OOUohG8l7C10YWIb/view?usp=sharing)
 

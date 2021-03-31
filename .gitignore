@@ -1,0 +1,5 @@
+venv
+/model/lang.checkpoint.70000
+/model/model.checkpoint.70000
+/model/glove.6b.300d.txt
+.idea

@@ -1,6 +1,12 @@
-from nltk.corpus import brown, twitter_samples, comparative_sentences, shakespeare, nps_chat, sentence_polarity
+from nltk.corpus import brown, comparative_sentences, sentence_polarity
+import nltk
 import random
-from lyrics_prediction.song_prediction import SongGenerator
+
+# Download corpus
+nltk.download('brown')
+nltk.download('comparative_sentences')
+nltk.download('sentence_polarity')
+
 
 max_search_length = 500
 min_search_length = 100

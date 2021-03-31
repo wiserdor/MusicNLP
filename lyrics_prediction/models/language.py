@@ -8,7 +8,7 @@ class Lang:
         self.word_count = 0
         self.ind2word = {}
         self.word2ind = {}
-        for line in open("./lyrics_prediction/model/glove.6B.300d.txt", encoding="utf8"):
+        for line in open("./model/glove.6B.300d.txt", encoding="utf8"):
             values = line.split(" ")
             v = []
             for i in range(1, len(values)):

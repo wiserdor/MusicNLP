@@ -23,7 +23,7 @@ class RNNTools:
         self.lang = lang
         self.model = CharBasedRNN(self.lang.word_count, hidden_size, n_tags, n_layers, self.lang)
         self.model.load_state_dict(
-            torch.load("./lyrics_prediction/model/model.checkpoint." + cp, map_location=lambda storage, loc: storage))
+            torch.load("./model/model.checkpoint." + cp, map_location=lambda storage, loc: storage))
         self.model.cpu()
         self.model.eval()
 
