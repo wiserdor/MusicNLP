@@ -1,10 +1,12 @@
 files in this folder:
     ```
+    
     [Optional: for training model] ./model/glove.6b.300d.txt
     
     ./model/model.checkpoint.7000
     
     ./model/lang.checkpoint.7000
+    
     ```
 
 Model file can be downloaded from here:
