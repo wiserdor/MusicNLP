@@ -8,8 +8,8 @@ nltk.download('comparative_sentences')
 nltk.download('sentence_polarity')
 
 
-max_search_length = 50
-min_search_length = 20
+max_search_length = 30
+min_search_length = 10
 
 
 class CorpusBlender:
