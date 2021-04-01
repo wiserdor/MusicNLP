@@ -1,7 +1,7 @@
 files in this folder:
     ```
     
-    [Optional: for training model] ./model/glove.6b.300d.txt
+    ./model/glove.6b.300d.txt
     
     ./model/model.checkpoint.7000
     

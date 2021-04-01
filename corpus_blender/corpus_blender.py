@@ -1,38 +1,31 @@
-from nltk.corpus import brown, comparative_sentences, sentence_polarity
+from nltk.corpus import gutenberg  # brown, comparative_sentences, sentence_polarity
 import nltk
 import random
 
 # Download corpus
-nltk.download('brown')
-nltk.download('comparative_sentences')
-nltk.download('sentence_polarity')
+# nltk.download('brown')
+# nltk.download('comparative_sentences')
+# nltk.download('sentence_polarity')
+nltk.download('gutenberg')
 
-
-max_search_length = 30
-min_search_length = 10
+num_of_sents_to_predict = 15000  # the grater the number, the grater the odds and the longer it takes to predict
+max_sentence_length = 2
 
 
 class CorpusBlender:
     def __init__(self, song_generator=None):
         self.song_generator = song_generator
-        self.corpuses_list = [brown, comparative_sentences, sentence_polarity]
+
+        # Can be any list of sentences
+        self.sents_list = gutenberg.sents(
+            ['austen-emma.txt', 'austen-persuasion.txt', 'austen-sense.txt'])
 
     def create_song(self):
         print('Creating songs')
-        sentences_num = random.randrange(min_search_length, max_search_length)
-        corpus_sentences_num = random.randrange(0, sentences_num)
-        rand_sentences = []
-
-        for i in range(corpus_sentences_num):
-            corpus_num = random.randrange(0, len(self.corpuses_list))
-            if corpus_num == 1:
-                sentence_num = random.randrange(0, len(self.corpuses_list[corpus_num].comparisons()))
-                rand_sentences.append(self.corpuses_list[corpus_num].comparisons()[sentence_num].text)
-            else:
-                sentence_num = random.randrange(0, len(self.corpuses_list[corpus_num].sents()))
-                rand_sentences.append(self.corpuses_list[corpus_num].sents()[sentence_num])
-
         corpus_for_prediction = ''
-        for sentence in rand_sentences:
-            corpus_for_prediction += ' '.join(sentence)
+
+        for i in range(num_of_sents_to_predict):
+            sent_chosen = random.choice(self.sents_list)
+            corpus_for_prediction += ' '.join(sent_chosen)
+
         self.song_generator.predict(corpus_for_prediction)

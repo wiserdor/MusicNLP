@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from lyrics_prediction.build_model import *
 
@@ -21,13 +22,13 @@ class PredictText:
         self.seq_target = [1]
 
     def save_predicted_text_to_txt(self, file_name=None):
-        if not os.isdir(save_path):
-            os.mkdir(save_path)
-        if not txt_name:
-            txt_name = time.now()
+        if not os.path.isdir(self.save_path):
+            os.mkdir(self.save_path)
+        if not file_name:
+            file_name = datetime.now()
 
         text_file = open(self.save_path + file_name, "w")
-        text_file.write(self.get_predicted_text())
+        text_file.write(self.seq_input)
         text_file.close()
 
     def predict_csv(self, *args):
@@ -51,25 +52,27 @@ class PredictText:
                         output_tag_id = 1
                         try:
                             output, hidden = self.rnnTool.model(j[o], hidden)
-                            output_tag_id = np.argmax(self.rnnTool.softmax(output.data.item()))
-                            if (self.rnnTool.lang.ind2word[j[o].data.item()] == '.'):
+                            output_tag_id = np.argmax(self.rnnTool.softmax(output.data.numpy()[0]))
+                            if (self.rnnTool.lang.ind2word[j[o].data.numpy()[0]] == '.'):
                                 output_tag_id = self.seq_output[-1]
 
-                            print("Word:", self.rnnTool.lang.ind2word[j[o].data.item()])
-                            print("Prediction:", output_tag_id)
+                            # print("Word:", self.rnnTool.lang.ind2word[j[o].data.numpy()[0]])
+                            # print("Prediction:", output_tag_id)
 
                         except Exception as e:
+                            # print('Check if all the files we need is in ./model folder')
+                            # print(e.__repr__())
                             output_tag_id = self.seq_output[-1]
-                            print("Word:", self.rnnTool.lang.ind2word[j[o].data.item()])
-                            print("Prediction:", output_tag_id)
+                            # print("Word:", self.rnnTool.lang.ind2word[j[o].data.numpy()[0]])
+                            # print("Prediction:", output_tag_id)
 
                         if (output_tag_id == 1):
-                            self.seq_input += " \033[1m" + self.rnnTool.lang.ind2word[j[o].data.item()] + '\033[0m'
+                            self.seq_input += " \033[1m" + self.rnnTool.lang.ind2word[j[o].data.numpy()[0]] + '\033[0m'
                         else:
-                            self.seq_input += " " + self.rnnTool.lang.ind2word[j[o].data.item()]
+                            self.seq_input += " " + self.rnnTool.lang.ind2word[j[o].data.numpy()[0]]
 
                         self.seq_output.append(output_tag_id)
-                        self.naked_text.append(self.rnnTool.lang.ind2word[j[o].data.item()])
+                        self.naked_text.append(self.rnnTool.lang.ind2word[j[o].data.numpy()[0]])
             del (self.seq_output[0])
             del (self.seq_target[0])
             self.smooth_ones()
