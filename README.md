@@ -1,6 +1,6 @@
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
-***! Right now project working with Anaconda and python>=3.6 only !***
+***! Right now project working with Anaconda and python<=3.6 only !***
 
 # About
 
